@@ -1,5 +1,7 @@
 import * as actionTypes from "./actionTypes";
 
+const apiKey = process.env.REACT_APP_API_KEY;
+
 export const init = (page) => {
   return async (dispatch) => {
     dispatch({
@@ -11,7 +13,7 @@ export const init = (page) => {
     });
     dispatch({ type: actionTypes.initPage });
     const res = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=6387ef21dc196070b8bf74183b7fc49d&page=${page}`
+      `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=${page}`
     );
     const data = await res.json();
     dispatch({
@@ -54,7 +56,7 @@ export const searchForMovie = (term, page) => {
     });
     dispatch({ type: actionTypes.initPage });
     const res = await fetch(
-      `https://api.themoviedb.org/3/search/movie?api_key=6387ef21dc196070b8bf74183b7fc49d&query=${term}&page=${page}`
+      `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${term}&page=${page}`
     );
     const data = await res.json();
     console.log(data);
@@ -76,7 +78,7 @@ export const addElements = (term, page) => {
     });
     if (term.length === 0) {
       const res = await fetch(
-        `https://api.themoviedb.org/3/trending/movie/day?api_key=6387ef21dc196070b8bf74183b7fc49d&page=${page}`
+        `https://api.themoviedb.org/3/trending/movie/day?api_key=${apiKey}&page=${page}`
       );
       const data = await res.json();
       dispatch({
@@ -86,7 +88,7 @@ export const addElements = (term, page) => {
       });
     } else {
       const res = await fetch(
-        `https://api.themoviedb.org/3/search/movie?api_key=6387ef21dc196070b8bf74183b7fc49d&query=${term}&page=${page}`
+        `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${term}&page=${page}`
       );
       const data = await res.json();
       dispatch({

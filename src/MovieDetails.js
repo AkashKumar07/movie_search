@@ -9,12 +9,12 @@ export default function () {
   const [data, setData] = useState(null);
   useEffect(() => {
     setLoading(true);
-    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=6387ef21dc196070b8bf74183b7fc49d`;
+    const url = `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.REACT_APP_API_KEY}`;
     (async function () {
       try {
         const res = await fetch(url);
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         setData(data);
       } catch (e) {
         console.log(e.message);
